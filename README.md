@@ -1,6 +1,14 @@
 # Efficient-DNA-synthesis-over-arrays
 
-One Paragraph of project description goes here
+Suppose you need to synthesize m·n strands, arranged in an m×n matrix,
+where each cell represents a strand. In each clock cycle, the synthesis machine
+generates one symbol according to its predefined synthesis sequence.
+However, it can synthesize only one strand per row but multiple strands
+per column.
+some of the questions that can be asked:
+1. What is the optimal way to program the synthesis machine and determine which
+base to synthesize in each cycle?
+2. What is the optimal way to arrage the strands in the array?
 
 ## Getting Started
 
