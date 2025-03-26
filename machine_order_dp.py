@@ -59,7 +59,7 @@ def backtrack_scs_synthesis(str1, str2, str3, str4, dp):
         step_info = ""
 
         if i > 0 and j > 0 and k > 0 and l > 0 and str1[i - 1] == str2[j - 1] == str3[k - 1] == str4[l - 1]:
-            synthesis_sequence = str1[i - 1] + synthesis_sequence
+            synthesis_sequence = str1[i - 1] + str1[i - 1] + synthesis_sequence
             step_info = f"Extended {str1[i - 1]} in Str1, Str2, Str3, Str4"
             i -= 1
             j -= 1
