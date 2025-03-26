@@ -43,5 +43,3 @@ For example:
 python machine_order_dp_script.py GATTACA GTACGGA CAGTTAC GCTAGGA
 ```
 
-Explain how to run the automated tests for this system
-
