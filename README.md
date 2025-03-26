@@ -29,14 +29,19 @@ You need to run this instruction before running the codes:
 pip install -r requirements.txt
 ```
 
-## Running the tests
+## Running the code
+
+To run algorithm DSSP with two trings use this script with the twor strings as a parameter: dssp_script.py str1 str2
+For example:
+```
+python dssp_script.py ACGTGTA GTACTGA
+```
+
+To run algorithm of the optimal machine order with 4 strings in a 2 x 2 array use this script with the 4 strings as a parameter:  machine_order_dp.py str1 str2 str3 str4
+For example:
+```
+python machine_order_dp_script.py GATTACA GTACGGA CAGTTAC GCTAGGA
+```
 
 Explain how to run the automated tests for this system
 
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
