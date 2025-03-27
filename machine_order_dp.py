@@ -58,45 +58,39 @@ def backtrack_scs_synthesis(str1, str2, str3, str4, dp):
     while i > 0 or j > 0 or k > 0 or l > 0:
         step_info = ""
 
-        if i > 0 and j > 0 and k > 0 and l > 0 and str1[i - 1] == str2[j - 1] == str3[k - 1] == str4[l - 1]:
-            synthesis_sequence = str1[i - 1] + str1[i - 1] + synthesis_sequence
-            step_info = f"Extended {str1[i - 1]} in Str1, Str2, Str3, Str4"
+
+
+        options = []
+        if i > 0 and k > 0 and str1[i - 1] == str3[k - 1]:
+            options.append((dp[i - 1][j][k - 1][l], str1[i - 1], "Str1 and Str3"))
+        if i > 0 and l > 0 and str1[i - 1] == str4[l - 1]:
+            options.append((dp[i - 1][j][k][l - 1], str1[i - 1], "Str1 and Str4"))
+        if j > 0 and k > 0 and str2[j - 1] == str3[k - 1]:
+            options.append((dp[i][j - 1][k - 1][l], str2[j - 1], "Str2 and Str3"))
+        if j > 0 and l > 0 and str2[j - 1] == str4[l - 1]:
+            options.append((dp[i][j - 1][k][l - 1], str2[j - 1], "Str2 and Str4"))
+
+        if i > 0:
+            options.append((dp[i - 1][j][k][l], str1[i - 1], "Str1"))
+        if j > 0:
+            options.append((dp[i][j - 1][k][l], str2[j - 1], "Str2"))
+        if k > 0:
+            options.append((dp[i][j][k - 1][l], str3[k - 1], "Str3"))
+        if l > 0:
+            options.append((dp[i][j][k][l - 1], str4[l - 1], "Str4"))
+
+        best_choice = min(options, key=lambda x: x[0])
+        synthesis_sequence = best_choice[1] + synthesis_sequence
+        step_info = f"Extended {best_choice[1]} in {best_choice[2]}"
+
+        if "Str1" in best_choice[2]:
             i -= 1
+        if "Str2" in best_choice[2]:
             j -= 1
+        if "Str3" in best_choice[2]:
             k -= 1
+        if "Str4" in best_choice[2]:
             l -= 1
-        else:
-            options = []
-            if i > 0 and k > 0 and str1[i - 1] == str3[k - 1]:
-                options.append((dp[i - 1][j][k - 1][l], str1[i - 1], "Str1 and Str3"))
-            if i > 0 and l > 0 and str1[i - 1] == str4[l - 1]:
-                options.append((dp[i - 1][j][k][l - 1], str1[i - 1], "Str1 and Str4"))
-            if j > 0 and k > 0 and str2[j - 1] == str3[k - 1]:
-                options.append((dp[i][j - 1][k - 1][l], str2[j - 1], "Str2 and Str3"))
-            if j > 0 and l > 0 and str2[j - 1] == str4[l - 1]:
-                options.append((dp[i][j - 1][k][l - 1], str2[j - 1], "Str2 and Str4"))
-
-            if i > 0:
-                options.append((dp[i - 1][j][k][l], str1[i - 1], "Str1"))
-            if j > 0:
-                options.append((dp[i][j - 1][k][l], str2[j - 1], "Str2"))
-            if k > 0:
-                options.append((dp[i][j][k - 1][l], str3[k - 1], "Str3"))
-            if l > 0:
-                options.append((dp[i][j][k][l - 1], str4[l - 1], "Str4"))
-
-            best_choice = min(options, key=lambda x: x[0])
-            synthesis_sequence = best_choice[1] + synthesis_sequence
-            step_info = f"Extended {best_choice[1]} in {best_choice[2]}"
-
-            if "Str1" in best_choice[2]:
-                i -= 1
-            if "Str2" in best_choice[2]:
-                j -= 1
-            if "Str3" in best_choice[2]:
-                k -= 1
-            if "Str4" in best_choice[2]:
-                l -= 1
 
         synthesis_steps.append(step_info)
 
